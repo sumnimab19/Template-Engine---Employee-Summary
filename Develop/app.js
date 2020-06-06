@@ -14,13 +14,108 @@ const render = require("./lib/htmlRenderer");
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 // ------------------------
-const questions = [
+const ManagerQuestions = [
       { 
         type: "input",
         name: "name",
-        message: "What is your Github username?"
-      }
+        message: "What is your manager's name?"
+      },
+      { 
+        type: "input",
+        name: "id",
+        message: "What is your manager's id?"
+      },
+      { 
+        type: "input",
+        name: "email",
+        message: "What is your manager's email?"
+      },
+      { 
+        type: "input",
+        name: "officeNumber",
+        message: "What is your manager's office number?"
+      },
+      { 
+        type: "checkbox",
+        name: "team",
+        message: "What type of team member would you like to add?",
+        default: "use arrow keys",
+        choices: [
+          "Engineer", 
+          "Intern", 
+          "I don't want to add any more team members"
+        ]
+      },
 ];
+
+const EngineerQuestions = [
+  { 
+    type: "input",
+    name: "name",
+    message: "What is your engineer's name?"
+  },
+  { 
+    type: "input",
+    name: "id",
+    message: "What is your engineer's id?"
+  },
+  { 
+    type: "input",
+    name: "email",
+    message: "What is your engineer's email?"
+  },
+  { 
+    type: "input",
+    name: "officeNumber",
+    message: "What is your engineer's Github username?"
+  },
+  { 
+    type: "checkbox",
+    name: "team",
+    message: "Which type of team member would you like to add?",
+    default: "Use arrow keys",
+    choices: [
+      "Engineer", 
+      "Intern", 
+      "I don't want to add any more team members"
+    ]
+  },
+];
+
+const InternQuestions = [
+  { 
+    type: "input",
+    name: "name",
+    message: "What is your intern's name?"
+  },
+  { 
+    type: "input",
+    name: "id",
+    message: "What is your intern's id?"
+  },
+  { 
+    type: "input",
+    name: "email",
+    message: "What is your intern's email?"
+  },
+  { 
+    type: "input",
+    name: "officeNumber",
+    message: "What is your intern's school?"
+  },
+  { 
+    type: "checkbox",
+    name: "team",
+    message: "Which type of team member would you like to add?",
+    default: "Use arrow keys",
+    choices: [
+      "Engineer", 
+      "Intern", 
+      "I don't want to add any more team members"
+    ]
+  },
+];
+
 
 function writeToFile(fileName, data) {
 
@@ -34,6 +129,7 @@ function writeToFile(fileName, data) {
 }
 
 function init() {
+ "Please build your team"
  inquirer.prompt(questions)
  .then(data => {
      writeToFile("./utils/README.md", data);
