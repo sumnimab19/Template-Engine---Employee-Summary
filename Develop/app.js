@@ -119,8 +119,8 @@ const InternQuestions = [
 
 function writeToFile(fileName, data) {
 
-  const readMe = generateMarkdown(data);
-  fs.writeFile(fileName, readMe, err => {
+  const team = render(data);
+  fs.writeFile(fileName, team, err => {
      if (err) {
        throw err;
      }
@@ -129,14 +129,14 @@ function writeToFile(fileName, data) {
 }
 
 function init() {
- "Please build your team"
- inquirer.prompt(questions)
+ inquirer.prompt(ManagerQuestions)
  .then(data => {
-     writeToFile("./utils/README.md", data);
+     writeToFile("./Develop/team.html", data);
  })
  .catch(error => {
      throw error; 
  });
+
 }
 
 init();
