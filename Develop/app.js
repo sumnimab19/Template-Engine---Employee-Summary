@@ -66,7 +66,7 @@ const EngineerQuestions = [
   },
   { 
     type: "input",
-    name: "officeNumber",
+    name: "github",
     message: "What is your engineer's Github username?"
   },
   { 
@@ -100,7 +100,7 @@ const InternQuestions = [
   },
   { 
     type: "input",
-    name: "officeNumber",
+    name: "school",
     message: "What is your intern's school?"
   },
   { 
@@ -117,29 +117,78 @@ const InternQuestions = [
 ];
 
 
-function writeToFile(fileName, data) {
 
-  const team = render(data);
-  fs.writeFile(fileName, team, err => {
-     if (err) {
-       throw err;
-     }
-     console.log("Success!");
- });
-}
+// function writeToFile(fileName, data) {
+//   const team = render(data);
+//   fs.writeFile(fileName, team, err => {
+//      if (err) {
+//        throw err;
+//      }
+//      console.log("Success!");
+//  });
+// }
+
+
 
 function init() {
  inquirer.prompt(ManagerQuestions)
  .then(data => {
-     writeToFile("./Develop/team.html", data);
+   const memberType = (data.team);
+   const managerData = new Manager(data.name, data.id, data.email,data.officeNumber);
+   console.log(managerData)
+   if(memberType == "Engineer"){
+     engineer();
+   } else if (memberType == "Intern"){
+     intern();
+   } else if (memberType == "I don't want to add any more team members") {
+      return;
+   }
  })
  .catch(error => {
      throw error; 
  });
+}
 
+function engineer() {
+  inquirer.prompt(EngineerQuestions)
+  .then(data => {
+    const memberType = (data.team);
+    const engineerData = new Engineer(data.name, data.id, data.email,data.github);
+    console.log(engineerData)
+    if(memberType == "Engineer"){
+      engineer();
+    } else if(memberType == "Intern"){
+      intern();
+    } else if (memberType == "I don't want to add any more team members"){
+      return;
+    } 
+  })
+  .catch(error => {
+      throw error; 
+  });
+}
+
+function intern() {
+  inquirer.prompt(InternQuestions)
+  .then(data => {
+     const memberType = (data.team);
+     const internData = new Intern(data.name, data.id, data.email, data.school);
+     console.log(internData)
+     if(memberType == "Engineer"){
+      engineer();
+    } else if(memberType == "Intern"){
+      intern();
+    } else if (memberType == "I don't want to add any more team members"){
+      return;
+    } 
+  })
+  .catch(error => {
+      throw error; 
+  });
 }
 
 init();
+
 // -------------------------
 
 // After the user has input all employees desired, call the `render` function (required
