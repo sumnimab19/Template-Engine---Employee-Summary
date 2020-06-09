@@ -10,6 +10,8 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const employees = [];
+
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -37,9 +39,8 @@ const ManagerQuestions = [
       },
       { 
         type: "checkbox",
-        name: "team",
+        name: "type",
         message: "What type of team member would you like to add?",
-        default: "use arrow keys",
         choices: [
           "Engineer", 
           "Intern", 
@@ -71,9 +72,8 @@ const EngineerQuestions = [
   },
   { 
     type: "checkbox",
-    name: "team",
+    name: "type",
     message: "Which type of team member would you like to add?",
-    default: "Use arrow keys",
     choices: [
       "Engineer", 
       "Intern", 
@@ -105,9 +105,8 @@ const InternQuestions = [
   },
   { 
     type: "checkbox",
-    name: "team",
+    name: "type",
     message: "Which type of team member would you like to add?",
-    default: "Use arrow keys",
     choices: [
       "Engineer", 
       "Intern", 
@@ -116,32 +115,23 @@ const InternQuestions = [
   },
 ];
 
-
-
-// function writeToFile(fileName, data) {
-//   const team = render(data);
-//   fs.writeFile(fileName, team, err => {
-//      if (err) {
-//        throw err;
-//      }
-//      console.log("Success!");
-//  });
-// }
-
-
-
+// This function calls ManagerQuestions to begin with
 function init() {
  inquirer.prompt(ManagerQuestions)
  .then(data => {
-   const memberType = (data.team);
-   const managerData = new Manager(data.name, data.id, data.email,data.officeNumber);
+   const memberType = (data.type);
+   const managerData = new Manager(data.name, data.id, data.email, data.officeNumber);
+   employees.push(managerData);
+
    console.log(managerData)
    if(memberType == "Engineer"){
      engineer();
    } else if (memberType == "Intern"){
      intern();
    } else if (memberType == "I don't want to add any more team members") {
-      return;
+    render(employees);  
+    console.log(employees)
+    return;
    }
  })
  .catch(error => {
@@ -149,17 +139,23 @@ function init() {
  });
 }
 
+// This function gets called if selected team is equal to "Engineer"
 function engineer() {
   inquirer.prompt(EngineerQuestions)
   .then(data => {
-    const memberType = (data.team);
+    const memberType = (data.type);
     const engineerData = new Engineer(data.name, data.id, data.email,data.github);
+    employees.push(engineerData);
+
     console.log(engineerData)
     if(memberType == "Engineer"){
       engineer();
     } else if(memberType == "Intern"){
       intern();
     } else if (memberType == "I don't want to add any more team members"){
+      render(employees);
+      console.log(employees)
+
       return;
     } 
   })
@@ -168,17 +164,23 @@ function engineer() {
   });
 }
 
+// This function gets called if selected team is equal to "Intern"
 function intern() {
   inquirer.prompt(InternQuestions)
   .then(data => {
-     const memberType = (data.team);
+     const memberType = (data.type);
      const internData = new Intern(data.name, data.id, data.email, data.school);
+     employees.push(internData);
      console.log(internData)
      if(memberType == "Engineer"){
       engineer();
     } else if(memberType == "Intern"){
       intern();
     } else if (memberType == "I don't want to add any more team members"){
+      
+      render(employees);
+      console.log(employees)
+
       return;
     } 
   })
@@ -202,6 +204,8 @@ init();
 // `output` folder. You can use the variable `outputPath` above target this location.
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
+
+
 
 
 
