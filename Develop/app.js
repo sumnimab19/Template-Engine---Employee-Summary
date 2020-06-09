@@ -128,7 +128,7 @@ function init() {
      intern();
    } else if (memberType == "I don't want to add any more team members") {
     const teamHTML = render(employees);  
-    fs.writeFile("team.html", teamHTML, err => {
+    fs.writeFile(outputPath,teamHTML, err => {
       if(err) {
         throw err;
       }
@@ -154,7 +154,7 @@ function engineer() {
       intern();
     } else if (memberType == "I don't want to add any more team members"){
       const teamHTML = render(employees);  
-      fs.writeFile("team.html", teamHTML, err => {
+      fs.writeFile(outputPath,teamHTML, err => {
         if(err) {
           throw err;
         }
@@ -180,7 +180,7 @@ function intern() {
       intern();
     } else if (memberType == "I don't want to add any more team members"){
       const teamHTML = render(employees);  
-      fs.writeFile("team.html", teamHTML, err => {
+      fs.writeFile(outputPath,teamHTML, err => {
         if(err) {
           throw err;
         }
