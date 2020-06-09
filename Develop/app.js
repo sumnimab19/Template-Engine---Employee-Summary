@@ -122,15 +122,17 @@ function init() {
    const memberType = (data.type);
    const managerData = new Manager(data.name, data.id, data.email, data.officeNumber);
    employees.push(managerData);
-
-   console.log(managerData)
    if(memberType == "Engineer"){
      engineer();
    } else if (memberType == "Intern"){
      intern();
    } else if (memberType == "I don't want to add any more team members") {
-    render(employees);  
-    console.log(employees)
+    const teamHTML = render(employees);  
+    fs.writeFile("team.html", teamHTML, err => {
+      if(err) {
+        throw err;
+      }
+    });
     return;
    }
  })
@@ -146,16 +148,17 @@ function engineer() {
     const memberType = (data.type);
     const engineerData = new Engineer(data.name, data.id, data.email,data.github);
     employees.push(engineerData);
-
-    console.log(engineerData)
     if(memberType == "Engineer"){
       engineer();
     } else if(memberType == "Intern"){
       intern();
     } else if (memberType == "I don't want to add any more team members"){
-      render(employees);
-      console.log(employees)
-
+      const teamHTML = render(employees);  
+      fs.writeFile("team.html", teamHTML, err => {
+        if(err) {
+          throw err;
+        }
+      });
       return;
     } 
   })
@@ -171,16 +174,17 @@ function intern() {
      const memberType = (data.type);
      const internData = new Intern(data.name, data.id, data.email, data.school);
      employees.push(internData);
-     console.log(internData)
      if(memberType == "Engineer"){
       engineer();
     } else if(memberType == "Intern"){
       intern();
     } else if (memberType == "I don't want to add any more team members"){
-      
-      render(employees);
-      console.log(employees)
-
+      const teamHTML = render(employees);  
+      fs.writeFile("team.html", teamHTML, err => {
+        if(err) {
+          throw err;
+        }
+      });
       return;
     } 
   })
@@ -205,7 +209,26 @@ init();
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
 
+// function writeToFile(fileName, data) {
 
+//   const teamDetail = generateMarkdown(data);
+//   fs.writeFile(fileName, teamDetail, err => {
+//      if (err) {
+//        throw err;
+//      }
+//      console.log("Success!");
+//  });
+// }
+
+// function init() {
+//  inquirer.prompt(questions)
+//  .then(data => {
+//      writeToFile("./utils/README.md", data);
+//  })
+//  .catch(error => {
+//      throw error; 
+//  });
+// }
 
 
 
