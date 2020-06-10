@@ -17,20 +17,25 @@ so that he/she has quick access to emails and GitHub profiles.
 ## Technology Used
 1. Semantic HTML5
 2. Bootstrap
-3. node js
+3. Node.js
 4. Javascript
 
 
-## Screenshot Large Screen
 
+## Screenshot 
 
-
-
-## Screenshot Small Screen
+![Image 6-9-20 at 5 04 PM](https://user-images.githubusercontent.com/55207625/84212931-15fc3580-aa74-11ea-9496-1189961d2ae4.jpeg)
 
 
 
 ## GIFs
+![myteam1](https://user-images.githubusercontent.com/55207625/84212831-c6b60500-aa73-11ea-8f67-fd516a42a9cf.gif)
+
+![myteam2](https://user-images.githubusercontent.com/55207625/84212858-d897a800-aa73-11ea-8558-36f18047211c.gif)
+
+![myteam3](https://user-images.githubusercontent.com/55207625/84212883-e77e5a80-aa73-11ea-9ec4-e7fe13098b4f.gif)
+
+![myteam4](https://user-images.githubusercontent.com/55207625/84212897-f533e000-aa73-11ea-8e07-899a8812d768.gif)
 
 
 
