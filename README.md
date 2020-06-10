@@ -9,14 +9,14 @@ This application is a Node CLI that takes in information about employees and gen
 
 
 ## Installation
-
-To install neccessary dependencies, run the following command:
-    npm i
+To install necessary dependencies, run the following command:
+  
+npm i
 
 ## Test
-
 To run tests, run the following command:
-    npm test
+
+npm test
 
 ## Use Cases
 
@@ -48,5 +48,3 @@ so that he/she has quick access to emails and GitHub profiles.
 ![myteam4](https://user-images.githubusercontent.com/55207625/84212897-f533e000-aa73-11ea-8e07-899a8812d768.gif)
 
 
-
-## Link to the page
